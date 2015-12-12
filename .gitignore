@@ -1,0 +1,6 @@
+/.guard-haskell/
+/.idea/
+/.stack-work/
+/dist/
+/cabal.sandbox.config
+*.iml

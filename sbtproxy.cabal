@@ -1,0 +1,57 @@
+name:              sbtproxy
+version:           1.0
+Build-Type:        Simple
+cabal-version:     >= 1.22
+
+executable HaskellTemplate
+  main-is: Main.hs
+  hs-source-dirs: src
+  build-depends: base
+               , process
+               , filepath
+               , directory
+               , mtl
+               , relational-record
+               , time
+               , relational-query
+               , relational-query-HDBC
+               , HDBC
+               , HDBC-session
+               , persistable-record
+               , template-haskell
+               , names-th
+               , dlist
+  if true
+    build-depends: hspec
+                 , hspec-discover
+  default-language: Haskell2010
+
+  if !os(windows)
+    build-depends: unix
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: SpecMain.hs
+  hs-source-dirs: test, src
+  default-language: Haskell2010
+  build-depends: base
+               , process
+               , filepath
+               , directory
+               , mtl
+               , relational-record
+               , time
+               , relational-query
+               , relational-query-HDBC
+               , HDBC
+               , HDBC-session
+               , persistable-record
+               , template-haskell
+               , names-th
+               , hspec
+               , hspec-discover
+               , QuickCheck
+               , dlist
+
+  if !os(windows)
+    build-depends: unix

@@ -1,0 +1,26 @@
+machine:
+  environment:
+    stack: ./stack/current/stack
+
+dependencies:
+  cache_directories:
+    - "~/.stack"
+    - "stack"
+    - ".stack-work"
+
+  override:
+    - |
+      stack_version=0.1.10.0
+      rm -f stack/current
+      mkdir -p stack/$stack_version
+      ln -s $PWD/stack/$stack_version $PWD/stack/current
+      if [ ! -f $stack ]; then
+        curl -L https://github.com/commercialhaskell/stack/releases/download/v$stack_version/stack-$stack_version-linux-x86_64.tar.gz -o stack.tar.gz
+        tar xf stack.tar.gz --strip 1 -C stack/current
+      fi
+      $stack ghc -- --version || $stack setup
+      $stack test --only-dependencies
+
+test:
+  override:
+    - $stack test

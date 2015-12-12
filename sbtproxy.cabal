@@ -11,15 +11,7 @@ executable HaskellTemplate
                , filepath
                , directory
                , mtl
-               , relational-record
                , time
-               , relational-query
-               , relational-query-HDBC
-               , HDBC
-               , HDBC-session
-               , persistable-record
-               , template-haskell
-               , names-th
                , dlist
   if true
     build-depends: hspec
@@ -39,19 +31,12 @@ test-suite spec
                , filepath
                , directory
                , mtl
-               , relational-record
                , time
-               , relational-query
-               , relational-query-HDBC
-               , HDBC
-               , HDBC-session
-               , persistable-record
-               , template-haskell
-               , names-th
+               , dlist
+
                , hspec
                , hspec-discover
                , QuickCheck
-               , dlist
 
   if !os(windows)
     build-depends: unix
